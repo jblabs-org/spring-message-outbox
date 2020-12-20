@@ -1,4 +1,4 @@
-package org.jblabs.outbox.storage.postgres;
+package org.jblabs.outbox;
 
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
