@@ -1,8 +1,14 @@
 package org.jblabs.outbox;
 
-import org.springframework.context.annotation.PropertySource;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-@PropertySource("outbox.storage.postgres")
+@ConfigurationProperties(prefix = "outbox.storage")
+@Configuration
+@Getter
+@Setter
 public class PostgresOutboxProperties {
     private String tableName;
 }

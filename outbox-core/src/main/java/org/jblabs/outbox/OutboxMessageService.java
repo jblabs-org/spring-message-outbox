@@ -34,7 +34,7 @@ public class OutboxMessageService {
         for (OutboxMessage outboxMessage : outboxMessages) {
             try {
                 outboxMessagePublisher.publish(outboxMessage);
-                successfullyPublishedIds.add(outboxMessage.getId());
+                successfullyPublishedIds.add(outboxMessage.getMessageId());
             } catch (MessagePublishingException e) {
                 //publish failed; don't mark id as published
             }
