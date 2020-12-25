@@ -10,5 +10,5 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 public class PostgresOutboxProperties {
-    private String tableName;
+    private String tableName = "message_outbox";
 }

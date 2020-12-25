@@ -5,8 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 public class PostgresOutboxRepository implements OutboxMessageRepository {
-    private static final String INSERT_SQL = "insert into %s (message_id, aggregate_name, aggregate_id, destination, payload) " +
-            "values ('%s', '%s', '%s', '%s', '%s');";
+    private static final String INSERT_SQL = "insert into %s (message_id, aggregate_name, aggregate_id, destination, " +
+            "payload, created_at, is_published) " +
+            "values ('%s', '%s', '%s', '%s', '%s', '%s', '%s');";
 
     private PostgresOutboxProperties postgresOutboxProperties;
     private JdbcTemplate jdbcTemplate;
@@ -24,7 +25,7 @@ public class PostgresOutboxRepository implements OutboxMessageRepository {
         DBOutboxMessage dbOutboxMessage = outboxMessageMapper.toDB(outboxMessage);
         jdbcTemplate.execute(String.format(INSERT_SQL, postgresOutboxProperties.getTableName(), dbOutboxMessage.getMessageId(),
                 dbOutboxMessage.getAggregateName(), outboxMessage.getAggregateId(), outboxMessage.getDestination(),
-                outboxMessage.getPayload()));
+                outboxMessage.getPayload(), outboxMessage.getCreatedAt(), outboxMessage.isPublished()));
     }
 
     @Override
