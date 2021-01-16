@@ -1,11 +1,15 @@
 package org.jblabs.outbox;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
+@Component
 public class OutboxMessageService {
     private static final int NUM_MESSAGES_TO_POLL = 100;
 
@@ -29,6 +33,7 @@ public class OutboxMessageService {
 
     @Transactional
     public void publishMessages() {
+        log.debug("Publishing outbox messages");
         List<OutboxMessage> outboxMessages = outboxMessageRepository.getMessages(NUM_MESSAGES_TO_POLL);
         List<String> successfullyPublishedIds = new ArrayList<>();
         for (OutboxMessage outboxMessage : outboxMessages) {
@@ -36,10 +41,12 @@ public class OutboxMessageService {
                 outboxMessagePublisher.publish(outboxMessage);
                 successfullyPublishedIds.add(outboxMessage.getMessageId());
             } catch (MessagePublishingException e) {
+                log.info("Failed to publish message with message id " + outboxMessage.getMessageId());
                 //publish failed; don't mark id as published
             }
         }
         if (!successfullyPublishedIds.isEmpty()) {
+            log.debug(String.format("Marking %d messages as successfully published", successfullyPublishedIds.size()));
             outboxMessageRepository.markAsPublished(successfullyPublishedIds);
         }
     }

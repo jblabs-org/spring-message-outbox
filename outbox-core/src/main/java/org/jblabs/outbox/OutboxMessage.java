@@ -1,12 +1,14 @@
 package org.jblabs.outbox;
 
 import lombok.Getter;
+import lombok.ToString;
 import org.springframework.util.StringUtils;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Getter
+@ToString
 public class OutboxMessage {
     private String messageId;
     private String aggregateName;
@@ -27,5 +29,24 @@ public class OutboxMessage {
         this.destination = destination;
         this.payload = payload;
         this.createdAt = OffsetDateTime.now();
+    }
+
+    /**
+     * Used internally for rehydration from persistence
+     */
+    private OutboxMessage(String messageId, String aggregateName, String aggregateId, String destination, String payload,
+                         OffsetDateTime createdAt, boolean isPublished) {
+        this.messageId = messageId;
+        this.aggregateName = aggregateName;
+        this.aggregateId = aggregateId;
+        this.destination = destination;
+        this.payload = payload;
+        this.createdAt = createdAt;
+        this.isPublished = isPublished;
+    }
+
+    public static OutboxMessage rehydrate(String messageId, String aggregateName, String aggregateId, String destination,
+                                          String payload, OffsetDateTime createdAt, boolean isPublished) {
+        return new OutboxMessage(messageId, aggregateName, aggregateId, destination, payload, createdAt, isPublished);
     }
 }
