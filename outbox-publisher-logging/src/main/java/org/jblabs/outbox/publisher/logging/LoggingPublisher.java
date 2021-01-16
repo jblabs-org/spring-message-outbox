@@ -1,4 +1,4 @@
-package org.jblabs.outbox.publisher;
+package org.jblabs.outbox.publisher.logging;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jblabs.outbox.MessagePublishingException;
@@ -6,7 +6,7 @@ import org.jblabs.outbox.OutboxMessage;
 import org.jblabs.outbox.OutboxMessagePublisher;
 import org.springframework.stereotype.Component;
 
-@Component //TODO Move to test package
+@Component
 @Slf4j
 public class LoggingPublisher implements OutboxMessagePublisher {
 

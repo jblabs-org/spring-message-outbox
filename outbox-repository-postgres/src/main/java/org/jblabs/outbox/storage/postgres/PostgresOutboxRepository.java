@@ -1,5 +1,7 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.storage.postgres;
 
+import org.jblabs.outbox.OutboxMessage;
+import org.jblabs.outbox.OutboxMessageRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 

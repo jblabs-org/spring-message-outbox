@@ -1,4 +1,4 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.storage.postgres;
 
 import lombok.*;
 

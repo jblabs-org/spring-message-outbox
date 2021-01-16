@@ -22,5 +22,6 @@
 	<modules>
 	  <module>outbox-core</module>
 	  <module>outbox-repository-postgres</module>
+	  <module>outbox-publisher-logging</module>
 	</modules>
 </project>
