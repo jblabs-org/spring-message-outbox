@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class LoggingPublisher implements OutboxMessagePublisher {
+public class LoggingOutboxPublisher implements OutboxMessagePublisher {
 
     @Override
     public void publish(OutboxMessage outboxMessage) throws MessagePublishingException {

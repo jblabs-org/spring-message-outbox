@@ -21,7 +21,7 @@
 
 	<modules>
 	  <module>outbox-core</module>
-	  <module>outbox-repository-postgres</module>
+	  <module>outbox-storage-postgres</module>
 	  <module>outbox-publisher-logging</module>
 	  <module>outbox-publisher-rabbitmq</module>
 	</modules>
