@@ -16,16 +16,16 @@ for Spring Boot.
 The core module contains the main interfaces that other modules implement, classes that implement the main 
 outbox pattern workflows, and some default implementations of interfaces such as the Json serializer.
 
-### Storage Modules
+## Storage Modules
 Storage modules implement the OutboxMessageRepository interface and provide persistence for the outbox messages
 before they are published.
 
-- outbox-storage-postgres: uses Postgresql to store outbox messages
+- [outbox-storage-postgres](/outbox-storage-postgres) - uses Postgresql to store outbox messages
 
-### Publisher Modules
+## Publisher Modules
 Publisher modules implement the OutboxMessagePublisher interface and provide a mechanism to publish outbox 
 messages on a specific message channel.
 
-- outbox-publisher-logging: Logs messages to the log instead of publishing.  Useful for testing.
-- outbox-publisher-rabbitmq: Publishes messages to a RabbitMq exchange.
+- [outbox-publisher-logging](/outbox-publisher-logging) - Logs messages to the log instead of publishing.  Useful for testing.
+- [outbox-publisher-rabbitmq](/outbox-publisher-rabbitmq) - Publishes messages to a RabbitMq exchange.
 
