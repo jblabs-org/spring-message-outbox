@@ -1,6 +1,5 @@
 package org.jblabs.outbox;
 
-import org.jblabs.outbox.OutboxMessageRepository;
 import org.jblabs.outbox.api.Outbox;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
