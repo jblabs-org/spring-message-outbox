@@ -1,4 +1,4 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.core.message;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -18,7 +18,11 @@ public class OutboxMessage {
     private OffsetDateTime createdAt;
     private boolean isPublished = false;
 
-    public OutboxMessage(String aggregateName, String aggregateId, String destination, String payload) {
+    /**
+     * Constructor to create an OutboxMessage with a String payload and an auto-generated messageId.  For internal
+     * use only.
+     */
+    OutboxMessage(String aggregateName, String aggregateId, String destination, String payload) {
         if (!StringUtils.hasText(destination)) {
             throw new MessageCreationException("Destination cannot be empty");
         }
@@ -32,10 +36,18 @@ public class OutboxMessage {
     }
 
     /**
-     * Used internally for rehydration from persistence
+     * Used to rehydrate an instance of this class from a persistence source such as a database.  For internal use only.
+     */
+    public static OutboxMessage rehydrate(String messageId, String aggregateName, String aggregateId, String destination,
+                                          String payload, OffsetDateTime createdAt, boolean isPublished) {
+        return new OutboxMessage(messageId, aggregateName, aggregateId, destination, payload, createdAt, isPublished);
+    }
+
+    /**
+     * For internal use only
      */
     private OutboxMessage(String messageId, String aggregateName, String aggregateId, String destination, String payload,
-                         OffsetDateTime createdAt, boolean isPublished) {
+                          OffsetDateTime createdAt, boolean isPublished) {
         this.messageId = messageId;
         this.aggregateName = aggregateName;
         this.aggregateId = aggregateId;
@@ -43,10 +55,5 @@ public class OutboxMessage {
         this.payload = payload;
         this.createdAt = createdAt;
         this.isPublished = isPublished;
-    }
-
-    public static OutboxMessage rehydrate(String messageId, String aggregateName, String aggregateId, String destination,
-                                          String payload, OffsetDateTime createdAt, boolean isPublished) {
-        return new OutboxMessage(messageId, aggregateName, aggregateId, destination, payload, createdAt, isPublished);
     }
 }

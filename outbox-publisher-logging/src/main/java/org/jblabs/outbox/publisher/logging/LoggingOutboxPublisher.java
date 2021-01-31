@@ -1,10 +1,10 @@
 package org.jblabs.outbox.publisher.logging;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jblabs.outbox.MessagePublishingException;
-import org.jblabs.outbox.OutboxMessage;
-import org.jblabs.outbox.OutboxMessagePublisher;
+import org.jblabs.outbox.core.publisher.MessagePublishingException;
+import org.jblabs.outbox.core.publisher.OutboxMessagePublisher;
 import org.springframework.stereotype.Component;
+import org.jblabs.outbox.core.message.OutboxMessage;
 
 @Component
 @Slf4j

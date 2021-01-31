@@ -1,4 +1,4 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.core;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

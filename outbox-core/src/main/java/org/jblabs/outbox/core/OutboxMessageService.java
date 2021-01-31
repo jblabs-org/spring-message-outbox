@@ -1,6 +1,10 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.core;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jblabs.outbox.core.message.OutboxMessage;
+import org.jblabs.outbox.core.publisher.MessagePublishingException;
+import org.jblabs.outbox.core.publisher.OutboxMessagePublisher;
+import org.jblabs.outbox.core.storage.OutboxMessageRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

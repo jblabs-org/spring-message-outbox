@@ -1,4 +1,6 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.core.storage;
+
+import org.jblabs.outbox.core.message.OutboxMessage;
 
 import java.util.List;
 

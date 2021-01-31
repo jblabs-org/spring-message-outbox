@@ -1,4 +1,4 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.core.message;
 
 public class SerializationFailedException extends RuntimeException {
     public SerializationFailedException() {

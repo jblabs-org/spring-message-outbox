@@ -1,6 +1,6 @@
 package org.jblabs.outbox.storage.postgres;
 
-import org.jblabs.outbox.OutboxMessage;
+import org.jblabs.outbox.core.message.OutboxMessage;
 import org.springframework.stereotype.Component;
 
 @Component

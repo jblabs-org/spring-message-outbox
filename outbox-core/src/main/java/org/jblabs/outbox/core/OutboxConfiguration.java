@@ -1,13 +1,14 @@
-package org.jblabs.outbox;
+package org.jblabs.outbox.core;
 
-import org.jblabs.outbox.api.Outbox;
+import org.jblabs.outbox.core.Outbox;
+import org.jblabs.outbox.core.storage.OutboxMessageRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@ComponentScan
+@ComponentScan("org.jblabs.outbox.core")
 @EnableScheduling
 public class OutboxConfiguration {
 

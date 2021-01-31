@@ -1,7 +1,7 @@
-package org.jblabs.outbox.api;
+package org.jblabs.outbox.core;
 
-import org.jblabs.outbox.OutboxMessage;
-import org.jblabs.outbox.OutboxMessageRepository;
+import org.jblabs.outbox.core.message.OutboxMessage;
+import org.jblabs.outbox.core.storage.OutboxMessageRepository;
 
 import java.util.List;
 
