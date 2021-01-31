@@ -3,7 +3,7 @@ package org.jblabs.outbox.publisher.rabbitmq;
 import org.jblabs.outbox.core.publisher.MessagePublishingException;
 import org.jblabs.outbox.core.message.OutboxMessage;
 import org.jblabs.outbox.core.publisher.OutboxMessagePublisher;
-import org.jblabs.outbox.core.message.PayloadSerializer;
+import org.jblabs.outbox.core.message.Serializer;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +12,13 @@ public class RabbitmqOutboxPublisher implements OutboxMessagePublisher {
     private final RabbitTemplate rabbitTemplate;
     private final RabbitmqPublisherProperties rabbitmqPublisherProperties;
 
-    private final PayloadSerializer messageSerializer;
+    private final Serializer messageSerializer;
 
     public RabbitmqOutboxPublisher(RabbitTemplate rabbitTemplate, RabbitmqPublisherProperties rabbitmqPublisherProperties,
-                                   PayloadSerializer payloadSerializer) {
+                                   Serializer serializer) {
         this.rabbitTemplate = rabbitTemplate;
         this.rabbitmqPublisherProperties = rabbitmqPublisherProperties;
-        this.messageSerializer = payloadSerializer;
+        this.messageSerializer = serializer;
     }
 
     @Override

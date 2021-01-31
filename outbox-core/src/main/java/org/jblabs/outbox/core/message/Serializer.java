@@ -1,5 +1,5 @@
 package org.jblabs.outbox.core.message;
 
-public interface PayloadSerializer {
+public interface Serializer {
     String serialize(Object payload);
 }
