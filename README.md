@@ -14,7 +14,7 @@ for Spring Boot.
 
 ## Core Module
 The core module contains the main interfaces that other modules implement, classes that implement the main 
-outbox pattern workflows, and some default implementations of interfaces such as the Json serializer.
+outbox pattern workflows, and some default implementations of interfaces such as the Json messagePayloadSerializer.
 
 ## Storage Modules
 Storage modules implement the OutboxMessageRepository interface and provide persistence for the outbox messages

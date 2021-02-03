@@ -1,7 +1,7 @@
 package org.jblabs.outbox.publisher.rabbitmq;
 
-import org.jblabs.outbox.core.message.JsonSerializer;
-import org.jblabs.outbox.core.message.Serializer;
+import org.jblabs.outbox.core.publisher.JsonMessageSerializer;
+import org.jblabs.outbox.core.publisher.MessageSerializer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class RabbitmqPublisherConfiguration {
 
-    @ConditionalOnMissingBean(Serializer.class)
+    @ConditionalOnMissingBean(MessageSerializer.class)
     @Bean
-    public Serializer defaultMessageSerializer() {
-        return new JsonSerializer();
+    public MessageSerializer defaultMessageSerializer() {
+        return new JsonMessageSerializer();
     }
 }

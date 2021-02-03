@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 
-public class JsonSerializer implements Serializer {
+public class JsonMessagePayloadSerializer implements MessagePayloadSerializer {
     private static final ObjectMapper objectMapper;
     static {
         objectMapper = new ObjectMapper();
@@ -14,11 +14,10 @@ public class JsonSerializer implements Serializer {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-
     @Override
-    public String serialize(Object message) {
+    public String serialize(Object payload) {
         try {
-            return objectMapper.writeValueAsString(message);
+            return objectMapper.writeValueAsString(payload);
         } catch (JsonProcessingException e) {
             throw new SerializationFailedException(e);
         }

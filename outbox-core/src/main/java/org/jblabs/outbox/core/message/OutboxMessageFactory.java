@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OutboxMessageFactory {
-    private Serializer serializer;
+    private MessagePayloadSerializer messagePayloadSerializer;
 
-    public OutboxMessageFactory(Serializer serializer) {
-        this.serializer = serializer;
+    public OutboxMessageFactory(MessagePayloadSerializer messagePayloadSerializer) {
+        this.messagePayloadSerializer = messagePayloadSerializer;
     }
 
     public OutboxMessage withStringPayload(String aggregateName, String aggregateId, String destination, String payload) {
@@ -16,7 +16,7 @@ public class OutboxMessageFactory {
 
     public OutboxMessage withObjectPayload(String aggregateName, String aggregateId, String destination,
                                                Object payload) {
-        String serializedPayload = serializer.serialize(payload);
+        String serializedPayload = messagePayloadSerializer.serialize(payload);
         return new OutboxMessage(aggregateName, aggregateId, destination, serializedPayload);
     }
 }
