@@ -11,7 +11,7 @@ public class MessagePublisherScheduler {
         this.outboxMessageService = outboxMessageService;
     }
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelayString = "${outbox.storage.polling.frequencyInMillis:1000}")
     public void publishMessages() {
         outboxMessageService.publishMessages();
     }

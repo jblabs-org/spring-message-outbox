@@ -2,13 +2,13 @@ package org.jblabs.outbox.core;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix = "outbox")
-@Configuration
+@Component
 @Getter
 @Setter
 public class OutboxProperties {
-    private Integer storagePollingSize = 100;
+    @Value("${outbox.storage.polling.batchSize}")
+    private Integer batchSize;
 }

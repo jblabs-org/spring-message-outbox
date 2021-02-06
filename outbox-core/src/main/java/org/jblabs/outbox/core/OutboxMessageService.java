@@ -39,8 +39,8 @@ public class OutboxMessageService {
 
     @Transactional
     public void publishMessages() {
-        log.debug("Publishing outbox messages");
-        List<OutboxMessage> outboxMessages = outboxMessageRepository.getMessages(outboxProperties.getStoragePollingSize());
+        log.debug("Polling outbox for messages to publish");
+        List<OutboxMessage> outboxMessages = outboxMessageRepository.getMessages(outboxProperties.getBatchSize());
         List<String> successfullyPublishedIds = new ArrayList<>();
         for (OutboxMessage outboxMessage : outboxMessages) {
             try {

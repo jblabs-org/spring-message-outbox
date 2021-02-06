@@ -34,6 +34,7 @@ class OutboxMessageServiceTest {
     @BeforeEach
     private void init() {
         OutboxProperties outboxProperties = new OutboxProperties();
+        outboxProperties.setBatchSize(10);
         outboxMessageService = new OutboxMessageService(outboxMessageRepository, outboxMessagePublisher,
                 outboxProperties);
     }
