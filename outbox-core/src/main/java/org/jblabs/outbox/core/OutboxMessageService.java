@@ -15,14 +15,16 @@ import java.util.List;
 @Slf4j
 @Component
 public class OutboxMessageService {
-    private static final int NUM_MESSAGES_TO_POLL = 100;
 
     OutboxMessageRepository outboxMessageRepository;
     OutboxMessagePublisher outboxMessagePublisher;
+    OutboxProperties outboxProperties;
 
-    public OutboxMessageService(OutboxMessageRepository outboxMessageRepository, OutboxMessagePublisher outboxMessagePublisher) {
+    public OutboxMessageService(OutboxMessageRepository outboxMessageRepository, OutboxMessagePublisher outboxMessagePublisher,
+                                OutboxProperties outboxProperties) {
         this.outboxMessageRepository = outboxMessageRepository;
         this.outboxMessagePublisher = outboxMessagePublisher;
+        this.outboxProperties = outboxProperties;
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
@@ -38,7 +40,7 @@ public class OutboxMessageService {
     @Transactional
     public void publishMessages() {
         log.debug("Publishing outbox messages");
-        List<OutboxMessage> outboxMessages = outboxMessageRepository.getMessages(NUM_MESSAGES_TO_POLL);
+        List<OutboxMessage> outboxMessages = outboxMessageRepository.getMessages(outboxProperties.getStoragePollingSize());
         List<String> successfullyPublishedIds = new ArrayList<>();
         for (OutboxMessage outboxMessage : outboxMessages) {
             try {
