@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessagePublisherScheduler {
-    OutboxMessageService outboxMessageService;
+    final OutboxMessageService outboxMessageService;
 
     public MessagePublisherScheduler(OutboxMessageService outboxMessageService) {
         this.outboxMessageService = outboxMessageService;

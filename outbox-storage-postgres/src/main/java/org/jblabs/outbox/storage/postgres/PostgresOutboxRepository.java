@@ -16,9 +16,9 @@ public class PostgresOutboxRepository implements OutboxMessageRepository {
             "order by created_at desc limit %d for update skip locked";
     private static final String MARK_PROCESSED_SQL = "update %s set is_published = true where message_id in (%s)";
 
-    private PostgresOutboxProperties postgresOutboxProperties;
-    private JdbcTemplate jdbcTemplate;
-    private OutboxMessageMapper outboxMessageMapper;
+    private final PostgresOutboxProperties postgresOutboxProperties;
+    private final JdbcTemplate jdbcTemplate;
+    private final OutboxMessageMapper outboxMessageMapper;
 
 
     public PostgresOutboxRepository(PostgresOutboxProperties postgresOutboxProperties, JdbcTemplate jdbcTemplate, OutboxMessageMapper outboxMessageMapper) {
@@ -59,8 +59,8 @@ public class PostgresOutboxRepository implements OutboxMessageRepository {
     }
 
     private String getSqlStringList(List<String> items) {
-        return String.join(",", items.stream()
+        return items.stream()
                 .map(item -> "'" + item + "'")
-                .collect(Collectors.toList()));
+                .collect(Collectors.joining(","));
     }
 }

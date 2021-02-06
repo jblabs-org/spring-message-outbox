@@ -6,7 +6,7 @@ import org.jblabs.outbox.core.storage.OutboxMessageRepository;
 import java.util.List;
 
 public class Outbox {
-    OutboxMessageRepository outboxMessageRepository;
+    final OutboxMessageRepository outboxMessageRepository;
 
     public Outbox(OutboxMessageRepository outboxMessageRepository) {
         this.outboxMessageRepository = outboxMessageRepository;

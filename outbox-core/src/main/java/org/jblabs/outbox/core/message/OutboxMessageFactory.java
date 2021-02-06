@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OutboxMessageFactory {
-    private MessagePayloadSerializer messagePayloadSerializer;
+    private final MessagePayloadSerializer messagePayloadSerializer;
 
     public OutboxMessageFactory(MessagePayloadSerializer messagePayloadSerializer) {
         this.messagePayloadSerializer = messagePayloadSerializer;

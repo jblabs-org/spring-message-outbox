@@ -10,12 +10,12 @@ import java.util.UUID;
 @Getter
 @ToString
 public class OutboxMessage {
-    private String messageId;
-    private String aggregateName;
-    private String aggregateId;
-    private String destination;
-    private String payload;
-    private OffsetDateTime createdAt;
+    private final String messageId;
+    private final String aggregateName;
+    private final String aggregateId;
+    private final String destination;
+    private final String payload;
+    private final OffsetDateTime createdAt;
     private boolean isPublished = false;
 
     /**

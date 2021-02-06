@@ -16,9 +16,9 @@ import java.util.List;
 @Component
 public class OutboxMessageService {
 
-    OutboxMessageRepository outboxMessageRepository;
-    OutboxMessagePublisher outboxMessagePublisher;
-    OutboxProperties outboxProperties;
+    final OutboxMessageRepository outboxMessageRepository;
+    final OutboxMessagePublisher outboxMessagePublisher;
+    final OutboxProperties outboxProperties;
 
     public OutboxMessageService(OutboxMessageRepository outboxMessageRepository, OutboxMessagePublisher outboxMessagePublisher,
                                 OutboxProperties outboxProperties) {
