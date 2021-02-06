@@ -1,4 +1,9 @@
 # Spring Message Outbox
+
+<p align="left">
+  <a href="https://github.com/jblabs-org/spring-message-outbox"><img alt="Spring Message Outbox build status" src="https://github.com/jblabs-org/spring-message-outbox/workflows/Build%20and%20Test/badge.svg"></a>
+</p>
+
 Spring Message Outbox is a library that implements the
 [outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html) 
 for Spring Boot.
