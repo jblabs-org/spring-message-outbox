@@ -16,10 +16,16 @@
 	<description>Parent pom for outbox pattern implementation for Spring</description>
 
 	<properties>
+		<!-- Sonar -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.language>java</sonar.language>
 		<java.version>11</java.version>
 		<sonar.projectKey>jblabs-org_spring-message-outbox</sonar.projectKey>
 		<sonar.organization>jblabs-org</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+<!--		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../jacoco-coverage-report/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>-->
+		<jacoco.destFile>../target/jacoco.exec</jacoco.destFile>
 	</properties>
 
 	<modules>
@@ -28,4 +34,170 @@
 	  <module>outbox-publisher-logging</module>
 	  <module>outbox-publisher-rabbitmq</module>
 	</modules>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.5</version>
+					<configuration>
+						<append>true</append>
+						<destFile>${jacoco.destFile}</destFile>
+					</configuration>
+					<executions>
+						<execution>
+							<id>prepare-agent</id>
+							<phase>initialize</phase>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<goals>
+								<goal>report-aggregate</goal>
+							</goals>
+							<phase>verify</phase>
+						</execution>
+					</executions>
+
+
+<!--					<executions>-->
+<!--						<execution>-->
+<!--							<id>prepare-and-report</id>-->
+<!--							<goals>-->
+<!--								<goal>prepare-agent</goal>-->
+<!--								<goal>report</goal>-->
+<!--							</goals>-->
+<!--						</execution>-->
+<!--						<execution>-->
+<!--							<id>report-aggregate</id>-->
+<!--							<phase>verify</phase>-->
+<!--							<goals>-->
+<!--								<goal>report-aggregate</goal>-->
+<!--							</goals>-->
+<!--							<configuration>-->
+<!--								<outputDirectory>${project.basedir}/../target/site/jacoco-aggregate</outputDirectory>-->
+<!--							</configuration>-->
+<!--						</execution>-->
+<!--					</executions>-->
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<groupId>org.jacoco</groupId>-->
+<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+
+
+
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<groupId>org.jacoco</groupId>-->
+<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>prepare-agent</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--					<execution>-->
+<!--						<id>report</id>-->
+<!--						<phase>prepare-package</phase>-->
+<!--						<goals>-->
+<!--							<goal>report</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--&lt;!&ndash;					<execution>&ndash;&gt;-->
+<!--&lt;!&ndash;						<id>report-aggregate</id>&ndash;&gt;-->
+<!--&lt;!&ndash;						<phase>verify</phase>&ndash;&gt;-->
+<!--&lt;!&ndash;						<goals>&ndash;&gt;-->
+<!--&lt;!&ndash;							<goal>report-aggregate</goal>&ndash;&gt;-->
+<!--&lt;!&ndash;						</goals>&ndash;&gt;-->
+<!--&lt;!&ndash;						<inherited>false</inherited>&ndash;&gt;-->
+<!--&lt;!&ndash;					</execution>&ndash;&gt;-->
+<!--				</executions>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+	</build>
+
+<!--	<build>-->
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<groupId>org.jacoco</groupId>-->
+<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--				<version>0.8.5</version>-->
+<!--				<configuration>-->
+<!--					<destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>-->
+<!--					<dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>-->
+<!--					<output>file</output>-->
+<!--					<append>true</append>-->
+<!--					<excludes>-->
+<!--						<exclude>*MethodAccess</exclude>-->
+<!--					</excludes>-->
+<!--				</configuration>-->
+<!--&lt;!&ndash;				<configuration>&ndash;&gt;-->
+<!--&lt;!&ndash;					<destFile>${sonar.jacoco.reportPath}</destFile>&ndash;&gt;-->
+<!--&lt;!&ndash;					<append>true</append>&ndash;&gt;-->
+<!--&lt;!&ndash;				</configuration>&ndash;&gt;-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>agent</id>-->
+<!--						<goals>-->
+<!--							<goal>prepare-agent</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--					<execution>-->
+<!--						<id>jacoco-site</id>-->
+<!--						<phase>verify</phase>-->
+<!--						<goals>-->
+<!--							<goal>report</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+<!--	</build>-->
+
+<!--	<build>-->
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<groupId>org.jacoco</groupId>-->
+<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>report</id>-->
+<!--						<goals>-->
+<!--							<goal>report-aggregate</goal>-->
+<!--						</goals>-->
+<!--						<phase>verify</phase>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+<!--	</build>-->
+<!--	<build>-->
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<groupId>org.jacoco</groupId>-->
+<!--				<artifactId>jacoco-maven-plugin</artifactId>-->
+<!--				<version>0.8.5</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>report</id>-->
+<!--						<goals>-->
+<!--							<goal>report</goal>-->
+<!--						</goals>-->
+<!--						<phase>verify</phase>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+<!--	</build>-->
 </project>
