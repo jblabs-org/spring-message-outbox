@@ -18,6 +18,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<sonar.projectKey>jblabs-org_spring-message-outbox</sonar.projectKey>
+		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
 		<sonar.organization>jblabs-org</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
