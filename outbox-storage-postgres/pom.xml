@@ -6,7 +6,7 @@
 		<groupId>org.jblabs</groupId>
 		<artifactId>spring-message-outbox-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>org.jblabs</groupId>
