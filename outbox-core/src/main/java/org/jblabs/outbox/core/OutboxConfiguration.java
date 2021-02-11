@@ -1,6 +1,5 @@
 package org.jblabs.outbox.core;
 
-import org.jblabs.outbox.core.message.JsonMessagePayloadSerializer;
 import org.jblabs.outbox.core.message.MessagePayloadSerializer;
 import org.jblabs.outbox.core.storage.OutboxMessageRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -22,6 +21,6 @@ public class OutboxConfiguration {
     @Bean
     @ConditionalOnMissingBean(MessagePayloadSerializer.class)
     public MessagePayloadSerializer defaultMessagePayloadSerializer() {
-        return new JsonMessagePayloadSerializer();
+        return new JsonSerializer();
     }
 }

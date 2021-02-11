@@ -1,12 +1,14 @@
-package org.jblabs.outbox.core.message;
+package org.jblabs.outbox.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.jblabs.outbox.core.message.MessagePayloadSerializer;
+import org.jblabs.outbox.core.message.SerializationFailedException;
+import org.jblabs.outbox.core.publisher.MessageSerializer;
 
-
-public class JsonMessagePayloadSerializer implements MessagePayloadSerializer {
+public class JsonSerializer implements MessageSerializer, MessagePayloadSerializer {
     private static final ObjectMapper objectMapper;
     static {
         objectMapper = new ObjectMapper();
@@ -15,9 +17,9 @@ public class JsonMessagePayloadSerializer implements MessagePayloadSerializer {
     }
 
     @Override
-    public String serialize(Object payload) {
+    public String serialize(Object message) {
         try {
-            return objectMapper.writeValueAsString(payload);
+            return objectMapper.writeValueAsString(message);
         } catch (JsonProcessingException e) {
             throw new SerializationFailedException(e);
         }
