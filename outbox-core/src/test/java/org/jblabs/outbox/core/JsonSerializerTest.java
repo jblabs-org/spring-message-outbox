@@ -1,10 +1,7 @@
 package org.jblabs.outbox.core;
 
-import org.jblabs.outbox.core.message.OutboxMessage;
 import org.jblabs.outbox.core.message.SerializationFailedException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.time.OffsetDateTime;
 
@@ -17,9 +14,6 @@ class JsonSerializerTest {
     JsonSerializer jsonSerializer = new JsonSerializer();
     String serializedObject = "{\"stringField\":\"test string\",\"intField\":123,\"java8TimestampField\":\"2021-02-11T15:06:02.094443-06:00\"}";
 
-    @Mock
-    OutboxMessage outboxMessage;
-
     @Test
     void serialize() {
         TestObject testObject = testObject();
@@ -29,8 +23,8 @@ class JsonSerializerTest {
 
     @Test
     void serialize_shouldThrowExceptionOnFailure() {
-        TestObject testObject = testObject();
-        assertThrows(SerializationFailedException.class, () -> jsonSerializer.serialize(new WillNotSerialize()));
+        WillNotSerialize willNotSerialize = new WillNotSerialize();
+        assertThrows(SerializationFailedException.class, () -> jsonSerializer.serialize(willNotSerialize));
     }
 
     private TestObject testObject() {

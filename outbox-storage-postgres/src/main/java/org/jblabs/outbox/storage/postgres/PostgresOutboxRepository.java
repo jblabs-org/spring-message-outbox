@@ -37,7 +37,7 @@ public class PostgresOutboxRepository implements OutboxMessageRepository {
 
     @Override
     public void saveMessages(List<OutboxMessage> outboxMessages) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PostgresOutboxRepository implements OutboxMessageRepository {
 
     private List<DBOutboxMessage> getDBOutboxMessages(int numberOfMessages) {
         return jdbcTemplate.query(String.format(SELECT_SQL, postgresOutboxProperties.getTableName(), numberOfMessages),
-               new BeanPropertyRowMapper(DBOutboxMessage.class));
+               new BeanPropertyRowMapper<>(DBOutboxMessage.class));
     }
 
     @Override
