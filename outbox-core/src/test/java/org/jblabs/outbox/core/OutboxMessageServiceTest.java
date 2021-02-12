@@ -16,9 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class OutboxMessageServiceTest {
@@ -72,6 +71,20 @@ class OutboxMessageServiceTest {
 
         List<String> messageIds = outboxMessages.stream().map(OutboxMessage::getMessageId).collect(Collectors.toList());
         verify(outboxMessageRepository).markAsPublished(messageIds);
+    }
+
+    @Test
+    void publishMessages_shouldNotMarkPublishedOnPublishingException() throws MessagePublishingException {
+        List<OutboxMessage> outboxMessages = new ArrayList<>();
+        outboxMessages.add(outboxMessage());
+        outboxMessages.add(outboxMessage());
+        outboxMessages.add(outboxMessage());
+        when(outboxMessageRepository.getMessages(anyInt())).thenReturn(outboxMessages);
+        doThrow(new MessagePublishingException()).when(outboxMessagePublisher).publish(any());
+
+        outboxMessageService.publishMessages();
+
+        verify(outboxMessageRepository, times(0)).markAsPublished(any());
     }
 
     private OutboxMessage outboxMessage() {
