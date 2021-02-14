@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class OutboxIntegrationTest {
+class OutboxIntegrationTest {
 
     @Autowired
     Outbox outbox;
