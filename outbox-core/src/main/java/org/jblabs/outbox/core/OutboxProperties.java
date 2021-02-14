@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class OutboxProperties {
-    @Value("${outbox.storage.polling.batchSize}")
+    @Value("${outbox.storage.polling.batchSize:100}")
     private Integer batchSize;
 }
