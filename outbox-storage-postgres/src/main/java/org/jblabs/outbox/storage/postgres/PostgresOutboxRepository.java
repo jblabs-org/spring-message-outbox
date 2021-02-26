@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class PostgresOutboxRepository implements OutboxMessageRepository {
     private static final String INSERT_SQL = "insert into %s (message_id, aggregate_name, aggregate_id, destination, " +
             "payload, created_at, is_published) " +
-            "values ('%s', '%s', '%s', '%s', '%s', '%s', '%s');";
+            "values %s";
     private static final String SELECT_SQL = "select * from %s where is_published = false " +
             "order by created_at desc limit %d for update skip locked";
     private static final String MARK_PROCESSED_SQL = "update %s set is_published = true where message_id in (%s)";
@@ -29,15 +29,17 @@ public class PostgresOutboxRepository implements OutboxMessageRepository {
 
     @Override
     public void saveMessage(OutboxMessage outboxMessage) {
-        DBOutboxMessage dbOutboxMessage = outboxMessageMapper.toDB(outboxMessage);
-        jdbcTemplate.execute(String.format(INSERT_SQL, postgresOutboxProperties.getTableName(), dbOutboxMessage.getMessageId(),
-                dbOutboxMessage.getAggregateName(), outboxMessage.getAggregateId(), outboxMessage.getDestination(),
-                outboxMessage.getPayload(), outboxMessage.getCreatedAt(), outboxMessage.isPublished()));
+        jdbcTemplate.execute(String.format(INSERT_SQL, postgresOutboxProperties.getTableName(),
+                outboxMessageMapper.toInsertString(outboxMessage)));
     }
 
     @Override
     public void saveMessages(List<OutboxMessage> outboxMessages) {
-        throw new UnsupportedOperationException();
+        List<String> insertValueList = outboxMessages.stream()
+                .map(outboxMessageMapper::toInsertString)
+                .collect(Collectors.toList());
+        String insertValues = String.join(",", insertValueList);
+        jdbcTemplate.execute(String.format(INSERT_SQL, postgresOutboxProperties.getTableName(), insertValues));
     }
 
     @Override

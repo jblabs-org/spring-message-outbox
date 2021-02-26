@@ -1,5 +1,6 @@
 package org.jblabs.outbox.storage.postgres;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
