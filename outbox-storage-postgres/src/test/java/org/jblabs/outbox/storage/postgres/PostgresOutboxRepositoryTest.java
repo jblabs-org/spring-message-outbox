@@ -62,10 +62,14 @@ class PostgresOutboxRepositoryTest {
 
     @Test
     void getMessages() {
+        //TODO implement
+        assert(true);
     }
 
     @Test
     void markAsPublished() {
+        //TODO implement
+        assert(true);
     }
 
     private OutboxMessage outboxMessage() {
