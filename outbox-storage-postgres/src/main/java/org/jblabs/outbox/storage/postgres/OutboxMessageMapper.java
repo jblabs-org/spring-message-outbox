@@ -12,16 +12,14 @@ public class OutboxMessageMapper {
     }
 
     public String toInsertString(OutboxMessage outboxMessage) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(") ;
-        sb.append("'").append(outboxMessage.getMessageId()).append("'").append(", ");
-        sb.append("'").append(outboxMessage.getAggregateName()).append("'").append(", ");
-        sb.append("'").append(outboxMessage.getAggregateId()).append("'").append(", ");
-        sb.append("'").append(outboxMessage.getDestination()).append("'").append(", ");
-        sb.append("'").append(outboxMessage.getPayload()).append("'").append(", ");
-        sb.append("'").append(outboxMessage.getCreatedAt()).append("'").append(", ");
-        sb.append("'").append(outboxMessage.isPublished()).append("'");
-        sb.append(")");
-        return sb.toString();
+        return "(" +
+                "'" + outboxMessage.getMessageId() + "'" + ", " +
+                "'" + outboxMessage.getAggregateName() + "'" + ", " +
+                "'" + outboxMessage.getAggregateId() + "'" + ", " +
+                "'" + outboxMessage.getDestination() + "'" + ", " +
+                "'" + outboxMessage.getPayload() + "'" + ", " +
+                "'" + outboxMessage.getCreatedAt() + "'" + ", " +
+                "'" + outboxMessage.isPublished() + "'" +
+                ")";
     }
 }

@@ -35,14 +35,14 @@ class OutboxIntegrationTest {
 
 
     @Test
-    void publishMessage() throws MessagePublishingException, InterruptedException {
+    void publishMessage() throws MessagePublishingException {
         OutboxMessage outboxMessage = outboxMessageFactory.withStringPayload("testAggregateName", "testAggregateId",
                 "testDest", "testPayload");
-        when(outboxMessageRepository.getMessages(anyInt())).thenReturn(Arrays.asList(new OutboxMessage[]{outboxMessage}));
+        when(outboxMessageRepository.getMessages(anyInt())).thenReturn(Arrays.asList(outboxMessage));
         outbox.publish(outboxMessage);
 
         verify(outboxMessagePublisher, timeout(2000).atLeast(1)).publish(outboxMessage);
         verify(outboxMessageRepository, timeout(2000).atLeast(1)).saveMessage(outboxMessage);
-        verify(outboxMessageRepository, timeout(2000).atLeast(1)).markAsPublished(Arrays.asList(new String[]{outboxMessage.getMessageId()}));
+        verify(outboxMessageRepository, timeout(2000).atLeast(1)).markAsPublished(Arrays.asList(outboxMessage.getMessageId()));
     }
 }

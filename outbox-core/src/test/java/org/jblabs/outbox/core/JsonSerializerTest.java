@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class JsonSerializerTest {
 
-    JsonSerializer jsonSerializer = new JsonSerializer();
+    final JsonSerializer jsonSerializer = new JsonSerializer();
     String serializedObject = "{\"stringField\":\"test string\",\"intField\":123,\"java8TimestampField\":\"2021-02-11T15:06:02.094443-06:00\"}";
 
     @Test
@@ -35,7 +35,7 @@ class JsonSerializerTest {
         return testObject;
     }
 
-    private class TestObject {
+    private static class TestObject {
         public String stringField;
         public Integer intField;
         public OffsetDateTime java8TimestampField;

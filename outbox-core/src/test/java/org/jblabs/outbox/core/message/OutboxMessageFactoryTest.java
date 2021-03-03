@@ -1,11 +1,8 @@
 package org.jblabs.outbox.core.message;
 
-import org.jblabs.outbox.core.JsonSerializer;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,7 +12,6 @@ import java.time.OffsetDateTime;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 
 @ExtendWith(MockitoExtension.class)
 class OutboxMessageFactoryTest {
@@ -70,11 +66,11 @@ class OutboxMessageFactoryTest {
                 OffsetDateTime.parse("2021-02-11T15:06:02.094443-06:00"), false);
     }
 
-    private class TestPayload {
+    private static class TestPayload {
         public TestPayload(String testField) {
             this.testField = testField;
         }
 
-        public String testField;
+        public final String testField;
     }
 }
