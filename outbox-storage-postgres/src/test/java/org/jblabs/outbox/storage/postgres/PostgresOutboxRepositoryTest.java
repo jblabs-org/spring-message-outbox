@@ -107,9 +107,29 @@ class PostgresOutboxRepositoryTest {
     }
 
     @Test
-    void markAsPublished() {
-        //TODO implement
-        assert(true);
+    @FlywayTest
+    @Sql("classpath:db/migration/createOutboxTable.sql")
+    @Sql("classpath:db/migration/insertSingleMessage.sql")
+    void markAsPublished_singleMessage() {
+        repository.markAsPublished(Arrays.asList("123"));
+
+        Integer count = jdbcTemplate.queryForObject("select count(*) from " + postgresOutboxProperties.getTableName() +
+                " where is_published = true",
+                Integer.class);
+        assertThat(count, is(1));
+    }
+
+    @Test
+    @FlywayTest
+    @Sql("classpath:db/migration/createOutboxTable.sql")
+    @Sql("classpath:db/migration/insert4Messages.sql")
+    void markAsPublished_multipleMessages() {
+        repository.markAsPublished(Arrays.asList("1", "2", "3"));
+
+        Integer count = jdbcTemplate.queryForObject("select count(*) from " + postgresOutboxProperties.getTableName() +
+                        " where is_published = true",
+                Integer.class);
+        assertThat(count, is(3));
     }
 
     private OutboxMessage outboxMessage() {
