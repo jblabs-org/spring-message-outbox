@@ -16,4 +16,10 @@ public class RabbitmqPublisherConfiguration {
     public MessageSerializer defaultMessageSerializer() {
         return new JsonSerializer();
     }
+
+    @ConditionalOnMissingBean(ExchangeNameExtractor.class)
+    @Bean
+    public ExchangeNameExtractor defaultExchangeNameExtractor() {
+        return new AggregateNameExchangeNameExtractor();
+    }
 }
