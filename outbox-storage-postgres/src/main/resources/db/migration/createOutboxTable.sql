@@ -1,6 +1,7 @@
 CREATE TABLE message_outbox
 (
     message_id text NOT NULL,
+    message_type text,
     aggregate_name text,
     aggregate_id text,
     destination text,

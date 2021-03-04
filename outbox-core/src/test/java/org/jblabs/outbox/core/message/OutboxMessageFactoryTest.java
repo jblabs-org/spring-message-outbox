@@ -28,8 +28,9 @@ class OutboxMessageFactoryTest {
     @Test
     void withStringPayload() {
         OutboxMessage testMessage = testMessage("testPayload");
-        OutboxMessage createdMessage = outboxMessageFactory.withStringPayload(testMessage.getAggregateName(),
-                testMessage.getAggregateId(), testMessage.getDestination(), testMessage.getPayload());
+        OutboxMessage createdMessage = outboxMessageFactory.withStringPayload(testMessage.getMessageType(),
+                testMessage.getAggregateName(), testMessage.getAggregateId(), testMessage.getDestination(),
+                testMessage.getPayload());
 
         assertThat(createdMessage.getMessageId(), notNullValue());
         assertThat(createdMessage.getAggregateId(), is(testMessage.getAggregateId()));
@@ -48,8 +49,8 @@ class OutboxMessageFactoryTest {
         TestPayload testPayload = new TestPayload("testField");
         OutboxMessage testMessage = testMessage(null);
 
-        OutboxMessage createdMessage = outboxMessageFactory.withObjectPayload(testMessage.getAggregateName(),
-                testMessage.getAggregateId(), testMessage.getDestination(), testPayload);
+        OutboxMessage createdMessage = outboxMessageFactory.withObjectPayload(testMessage.getMessageType(),
+                testMessage.getAggregateName(), testMessage.getAggregateId(), testMessage.getDestination(), testPayload);
 
         assertThat(createdMessage.getMessageId(), notNullValue());
         assertThat(createdMessage.getAggregateId(), is(testMessage.getAggregateId()));
@@ -62,7 +63,7 @@ class OutboxMessageFactoryTest {
     }
 
     private OutboxMessage testMessage(String payload) {
-        return OutboxMessage.rehydrate("123", "testAggregateName", "456", "testDestination", payload,
+        return OutboxMessage.rehydrate("123", "testMessageType", "testAggregateName", "456", "testDestination", payload,
                 OffsetDateTime.parse("2021-02-11T15:06:02.094443-06:00"), false);
     }
 

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PostgresOutboxRepository implements OutboxMessageRepository {
-    private static final String INSERT_SQL = "insert into %s (message_id, aggregate_name, aggregate_id, destination, " +
-            "payload, created_at, is_published) " +
+    private static final String INSERT_SQL = "insert into %s (message_id, message_type, aggregate_name, aggregate_id, " +
+            "destination, payload, created_at, is_published) " +
             "values %s";
     private static final String SELECT_SQL = "select * from %s where is_published = false " +
             "order by created_at desc limit %d for update skip locked";

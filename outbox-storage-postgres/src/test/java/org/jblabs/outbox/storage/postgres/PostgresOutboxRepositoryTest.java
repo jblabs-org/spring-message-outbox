@@ -133,12 +133,12 @@ class PostgresOutboxRepositoryTest {
     }
 
     private OutboxMessage outboxMessage() {
-        return OutboxMessage.rehydrate("123", "testAggName", "456", "testDest", "test payload",
+        return OutboxMessage.rehydrate("123", "testMessageType", "testAggName", "456", "testDest", "test payload",
                 OffsetDateTime.parse("2021-02-11T15:06:02.094443-06:00"), false);
     }
 
     private OutboxMessage outboxMessage2() {
-        return OutboxMessage.rehydrate("1234", "testAggName", "4567", "testDest", "test payload",
+        return OutboxMessage.rehydrate("1234", "testMessageType", "testAggName", "4567", "testDest", "test payload",
                 OffsetDateTime.parse("2021-02-11T15:06:02.094443-06:00"), false);
     }
 

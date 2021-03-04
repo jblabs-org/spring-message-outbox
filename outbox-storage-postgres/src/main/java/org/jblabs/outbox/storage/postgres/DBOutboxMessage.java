@@ -11,6 +11,7 @@ import java.time.OffsetDateTime;
 @ToString
 public class DBOutboxMessage {
     private String messageId;
+    private String messageType;
     private String aggregateName;
     private String aggregateId;
     private String destination;

@@ -87,7 +87,7 @@ class OutboxMessageServiceTest {
     }
 
     private OutboxMessage outboxMessage() {
-        return OutboxMessage.rehydrate("123", "account", "456", "account-topic",
+        return OutboxMessage.rehydrate("123", "accountCreated", "account", "456", "account-topic",
                 "testAccountPayload", OffsetDateTime.now(), false);
     }
 }

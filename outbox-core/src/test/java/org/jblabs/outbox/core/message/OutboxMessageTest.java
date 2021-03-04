@@ -9,7 +9,7 @@ class OutboxMessageTest {
 
     @Test
     void testConstructor() {
-        OutboxMessage outboxMessage = new OutboxMessage("testName", "testId", "testDest", "testPayload");
+        OutboxMessage outboxMessage = new OutboxMessage("testMessageType", "testName", "testId", "testDest", "testPayload");
 
         assertThat(outboxMessage.getMessageId(), notNullValue());
     }

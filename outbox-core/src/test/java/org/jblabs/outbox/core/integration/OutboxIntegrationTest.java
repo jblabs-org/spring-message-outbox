@@ -36,7 +36,7 @@ class OutboxIntegrationTest {
 
     @Test
     void publishMessage() throws MessagePublishingException {
-        OutboxMessage outboxMessage = outboxMessageFactory.withStringPayload("testAggregateName", "testAggregateId",
+        OutboxMessage outboxMessage = outboxMessageFactory.withStringPayload("testMessageType", "testAggregateName", "testAggregateId",
                 "testDest", "testPayload");
         when(outboxMessageRepository.getMessages(anyInt())).thenReturn(Arrays.asList(outboxMessage));
         outbox.publish(outboxMessage);

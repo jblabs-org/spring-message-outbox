@@ -10,13 +10,13 @@ public class OutboxMessageFactory {
         this.messagePayloadSerializer = messagePayloadSerializer;
     }
 
-    public OutboxMessage withStringPayload(String aggregateName, String aggregateId, String destination, String payload) {
-        return new OutboxMessage(aggregateName, aggregateId, destination, payload);
+    public OutboxMessage withStringPayload(String messageType, String aggregateName, String aggregateId, String destination, String payload) {
+        return new OutboxMessage(messageType, aggregateName, aggregateId, destination, payload);
     }
 
-    public OutboxMessage withObjectPayload(String aggregateName, String aggregateId, String destination,
+    public OutboxMessage withObjectPayload(String messageType, String aggregateName, String aggregateId, String destination,
                                                Object payload) {
         String serializedPayload = messagePayloadSerializer.serialize(payload);
-        return new OutboxMessage(aggregateName, aggregateId, destination, serializedPayload);
+        return new OutboxMessage(messageType, aggregateName, aggregateId, destination, serializedPayload);
     }
 }
