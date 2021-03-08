@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service used to interface with the outbox for saving and querying messages.
+ */
 @Slf4j
 @Component
 public class OutboxMessageService {
@@ -27,16 +30,29 @@ public class OutboxMessageService {
         this.outboxProperties = outboxProperties;
     }
 
+    /**
+     * Save a single message to the outbox in an existing transaction.  An open transaction must exist before this
+     * method is called.
+     * @param outboxMessage the message to save to the outbox.
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public void saveMessage(OutboxMessage outboxMessage) {
         outboxMessageRepository.saveMessage(outboxMessage);
     }
 
+    /**
+     * Save multiple message to the outbox in an existing transaction.  An open transaction must exist before this
+     * method is called.
+     * @param outboxMessages the message to save to the outbox.
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public void saveMessages(List<OutboxMessage> outboxMessages) {
         outboxMessageRepository.saveMessages(outboxMessages);
     }
 
+    /**
+     * Read a batch of messages from the outbox and publish them, then mark them as published if successful.
+     */
     @Transactional
     public void publishMessages() {
         log.debug("Polling outbox for messages to publish");

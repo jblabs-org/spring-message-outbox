@@ -7,6 +7,10 @@ import org.springframework.util.StringUtils;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+/**
+ *  Message class used to save messages to the outbox for publication.  Use the {@link OutboxMessageFactory} to
+ *  construct new instances of this class.
+ */
 @Getter
 @ToString
 public class OutboxMessage {

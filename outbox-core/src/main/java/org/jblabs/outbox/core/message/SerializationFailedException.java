@@ -1,5 +1,8 @@
 package org.jblabs.outbox.core.message;
 
+/**
+ * Indicates a serialization failure
+ */
 public class SerializationFailedException extends RuntimeException {
     public SerializationFailedException() {
     }

@@ -9,8 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>org.jblabs</groupId>
-	<artifactId>outbox-publisher-logging</artifactId>
+    <artifactId>outbox-publisher-logging</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>outbox-publisher-logging</name>
 	<description>Message publisher implementation that logs messages to the log</description>

@@ -9,8 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>org.jblabs</groupId>
-	<artifactId>outbox-core</artifactId>
+    <artifactId>outbox-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>outbox-core</name>
 	<description>Outbox pattern implementation for Spring</description>

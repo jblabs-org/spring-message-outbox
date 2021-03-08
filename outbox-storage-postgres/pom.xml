@@ -9,7 +9,6 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>org.jblabs</groupId>
 	<artifactId>outbox-storage-postgres</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>outbox-storage-postgres</name>

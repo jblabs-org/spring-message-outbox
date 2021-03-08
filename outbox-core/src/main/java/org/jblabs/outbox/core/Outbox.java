@@ -1,22 +1,34 @@
 package org.jblabs.outbox.core;
 
 import org.jblabs.outbox.core.message.OutboxMessage;
-import org.jblabs.outbox.core.storage.OutboxMessageRepository;
 
 import java.util.List;
 
+/**
+ * Public API for the message outbox.
+ */
 public class Outbox {
-    final OutboxMessageRepository outboxMessageRepository;
+    final OutboxMessageService outboxMessageService;
 
-    public Outbox(OutboxMessageRepository outboxMessageRepository) {
-        this.outboxMessageRepository = outboxMessageRepository;
+    public Outbox(OutboxMessageService outboxMessageService) {
+        this.outboxMessageService = outboxMessageService;
     }
 
+    /**
+     * Publish a single message.  An open transaction must exist before this method is called.  The message will be
+     * saved to the outbox in the existing transaction, then published to a publisher asynchronously.
+     * @param message the message to be published.
+     */
     public void publish(OutboxMessage message) {
-        outboxMessageRepository.saveMessage(message);
+        outboxMessageService.saveMessage(message);
     }
 
+    /**
+     * Publish multiple messages.  An open transaction must exist before this method is called.  The messages will be
+     * saved to the outbox in the existing transaction, then published to a publisher asynchronously.
+     * @param messages the messages to be published.
+     */
     public void publish(List<OutboxMessage> messages) {
-        outboxMessageRepository.saveMessages(messages);
+        outboxMessageService.saveMessages(messages);
     }
 }

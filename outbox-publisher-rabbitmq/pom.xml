@@ -9,8 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>org.jblabs</groupId>
-	<artifactId>outbox-publisher-rabbitmq</artifactId>
+    <artifactId>outbox-publisher-rabbitmq</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>outbox-publisher-rabbitmq</name>
 	<description>Message publisher implementation for publishing to RabbitMQ</description>
