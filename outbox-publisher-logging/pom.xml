@@ -11,11 +11,36 @@
 
     <artifactId>outbox-publisher-logging</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>outbox-publisher-logging</name>
-	<description>Message publisher implementation that logs messages to the log</description>
+
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>Outbox message publisher implementation that logs messages instead of publishing them.</description>
+	<url>https://github.com/jblabs-org/spring-message-outbox</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Joshua Bridevaux</name>
+			<email>jblabs.org@domainsbyproxy.com</email>
+			<organization>JBLabs</organization>
+			<organizationUrl>http://www.jblabs.org</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/jblabs-org/spring-message-outbox.git</connection>
+		<developerConnection>scm:git:ssh://github.com:jblabs-org/spring-message-outbox.git</developerConnection>
+		<url>http://github.com/jblabs-org/spring-message-outbox/tree/main</url>
+	</scm>
 
 	<properties>
 		<java.version>11</java.version>
+		<maven.deploy.skip>false</maven.deploy.skip>
 	</properties>
 
 	<dependencies>

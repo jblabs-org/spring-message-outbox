@@ -3,7 +3,8 @@
 
 Spring Message Outbox is a library that implements the
 [outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html) 
-for Spring Boot.
+for Spring Boot.  This library is currently in an ALPHA state and in heavy development.  It is not
+advisable to use this library in production.  Contributions or bug reports are welcome. 
 
 ## Usage
 - Add outbox-core as a dependency to your project.
