@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.jblabs</groupId>
 		<artifactId>spring-message-outbox-parent</artifactId>
-		<version>0.0.3-SNAPSHOT</version>
+		<version>0.0.3</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>outbox-storage-postgres</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.3</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Outbox message storage implementation using the PostgreSQL database.</description>
