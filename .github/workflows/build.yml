@@ -23,6 +23,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 13
+        server-id: ossrh
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
     - name: Cache SonarCloud packages
       uses: actions/cache@v1
       with:
@@ -41,4 +44,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
