@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.jblabs</groupId>
 		<artifactId>spring-message-outbox-parent</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.2-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
     <artifactId>outbox-core</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Outbox pattern implementation for Spring</description>
