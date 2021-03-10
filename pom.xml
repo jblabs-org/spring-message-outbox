@@ -45,7 +45,6 @@
 		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
 		<sonar.organization>jblabs-org</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
 
 	<modules>
