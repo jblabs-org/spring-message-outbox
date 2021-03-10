@@ -11,7 +11,7 @@
 	<groupId>org.jblabs</groupId>
 	<artifactId>spring-message-outbox-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${revision}</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent Pom for the Spring Message Outbox</description>
@@ -27,7 +27,7 @@
 	<developers>
 		<developer>
 			<name>Joshua Bridevaux</name>
-			<email>jblabs.org@domainsbyproxy.com</email>
+			<email>info@jblabs.org</email>
 			<organization>JBLabs</organization>
 			<organizationUrl>http://www.jblabs.org</organizationUrl>
 		</developer>
@@ -39,18 +39,8 @@
 		<url>http://github.com/jblabs-org/spring-message-outbox/tree/main</url>
 	</scm>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-
 	<properties>
+		<revision>0.0.1-SNAPSHOT</revision>
 		<java.version>11</java.version>
 		<sonar.projectKey>jblabs-org_spring-message-outbox</sonar.projectKey>
 		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
@@ -65,6 +55,17 @@
 	  <module>outbox-publisher-logging</module>
 	  <module>outbox-publisher-rabbitmq</module>
 	</modules>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
