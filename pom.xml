@@ -11,7 +11,7 @@
 	<groupId>org.jblabs</groupId>
 	<artifactId>spring-message-outbox-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent Pom for the Spring Message Outbox</description>
