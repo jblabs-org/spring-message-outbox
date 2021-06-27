@@ -7,7 +7,8 @@ for Spring Boot.  This library is currently in an ALPHA state and in heavy devel
 advisable to use this library in production.  Contributions or bug reports are welcome. 
 
 ## Usage
-- Add outbox-core as a dependency to your project.
+- Add outbox-core as a dependency and import its configuration class into a Spring configuration class 
+  using @Import (don't name your config bean OutboxConfiguration as it will conflict).
 - Add a storage module as a dependency and import its configuration class into a Spring configuration class 
   using @Import
 - Add a publisher module as a dependency and import its configuration class into a Spring configuration class 
