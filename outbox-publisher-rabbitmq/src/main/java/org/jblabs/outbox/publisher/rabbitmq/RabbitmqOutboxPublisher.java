@@ -23,6 +23,6 @@ public class RabbitmqOutboxPublisher implements OutboxMessagePublisher {
     @Override
     public void publish(OutboxMessage outboxMessage) throws MessagePublishingException {
         rabbitTemplate.convertAndSend(exchangeNameExtractor.getExchangeName(outboxMessage),
-                outboxMessage.getAggregateName(), messageSerializer.serialize(outboxMessage));
+                outboxMessage.getMessageType(), messageSerializer.serialize(outboxMessage));
     }
 }

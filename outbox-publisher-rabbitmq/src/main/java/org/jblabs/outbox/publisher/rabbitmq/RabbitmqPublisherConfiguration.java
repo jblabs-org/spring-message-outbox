@@ -20,6 +20,6 @@ public class RabbitmqPublisherConfiguration {
     @ConditionalOnMissingBean(ExchangeNameExtractor.class)
     @Bean
     public ExchangeNameExtractor defaultExchangeNameExtractor() {
-        return new AggregateNameExchangeNameExtractor();
+        return new DestinationExchangeNameExtractor();
     }
 }
